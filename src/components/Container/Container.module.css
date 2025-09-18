@@ -1,0 +1,10 @@
+.container{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.content{
+    margin: 32px;
+    color: var(--primary);
+    text-align: center;
+}
