@@ -1,5 +1,4 @@
 .logo{
-    color: var(--primary);
     display:flex;
     align-items: center;
     justify-content: center;
@@ -14,7 +13,7 @@
     font-weight: bold;
     text-decoration: none;
     color: var(--primary);
-    transition: all 0.s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 .logoLink:hover{
     filter: brightness(50%)

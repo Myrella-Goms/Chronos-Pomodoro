@@ -1,10 +1,9 @@
 .menu{
-    color: var(--primary);
     display:flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    margin-top: 45px;
+    margin-top: 42px;
 }
 
 .menuIcons{
@@ -14,7 +13,7 @@
     text-decoration: none;
     transition: all 0.2s ease-in-out;
 }
-f
+
 .menuIcons:hover svg{
     filter: brightness(50%)
 }
