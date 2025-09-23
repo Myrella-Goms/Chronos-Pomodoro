@@ -1,6 +1,6 @@
 import { Container } from "../components/Container/Container";
-import { Heading } from "../components/Heading/Heading";
 import { Logo } from "../components/Logo/Logo";
+import { Menu } from "../components/Menu/Menu";
 
 
 export function Home(){
@@ -8,6 +8,7 @@ export function Home(){
         <div>
             <Container>
                 <Logo/>
+                <Menu/>
             </Container>
         </div>
     )
