@@ -1,5 +1,6 @@
 import {BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Home } from './page/Home'
+
 import './styles/global.css'
 import './styles/theme.css'
 

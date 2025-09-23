@@ -1,14 +1,13 @@
 import { Container } from "../components/Container/Container";
 import { Heading } from "../components/Heading/Heading";
+import { Logo } from "../components/Logo/Logo";
 
 
 export function Home(){
     return(
         <div>
             <Container>
-                <Heading>
-                    Chronos
-                </Heading>
+                <Logo/>
             </Container>
         </div>
     )
