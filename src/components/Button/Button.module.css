@@ -1,0 +1,19 @@
+.button{
+  padding: 5px;
+  background-color: var(--primary);
+  border:none;
+  min-width: 220px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.button svg{
+  color: var(--gray-700);
+  height: 32px;
+  width: 32px;
+}
+.button:hover{
+  background-color: var(--primary-dark);
+  transform: scale(1.05);
+  transition: transform 0.1s ease, background-color 0.1s ease;
+}
