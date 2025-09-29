@@ -1,0 +1,7 @@
+.container{
+    font-size: clamp(80px, 25vw, 160px);
+    font-weight: bold;
+    color: #FFFFFF;
+    line-height: 1.5;
+
+}

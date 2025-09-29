@@ -1,0 +1,28 @@
+.menu{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 42px;
+}
+
+.menuIcons{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.menuIcons:hover svg{
+    filter: brightness(50%)
+}
+
+.menuIcons svg {
+    width: 42px;
+    height: 35px;
+    padding: 5px;
+    background-color: var(--primary);
+    color: var(--gray-800);
+    border-radius: 5px;
+}
