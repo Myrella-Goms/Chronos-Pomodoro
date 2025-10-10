@@ -4,14 +4,15 @@ import styles from './Button.module.css'
 
 type ButtonProps = {
     icon: React.ReactNode;
+    color?: 'green' | 'red';
 
 } & React.ComponentProps<"button">; //inter
 
-export function Button({icon, ...props}: ButtonProps) {
+export function Button({color='green', icon, ...props}: ButtonProps) {
 
   return (
     <div className="button">
-      <button className={styles.button} {...props}>
+      <button className={`${styles.button} ${styles.color}`} {...props}>
           {icon}
       </button>
     </div>
