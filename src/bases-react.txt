@@ -1,0 +1,29 @@
+React adota que a lógica de renderização é acoplada com outras lógicas de ui: manipulação de eventos, estado mudando e exibição de dados
+
+JSX: extensão de sintaxe js. Posso usar funções dentro do jsx, posso usar jsx dentro de blocos if e loops, atribuir a variaveis, aceitar como argumento e retornar de funções.
+
+    JSX previne ataques de injeção 
+
+    function formatUserName(user){
+        return `${user.firstName} ${user.lastName}`
+    }
+
+    const user = {
+        firstName: "Momozinho",
+        lastName: "Gomes"
+    }
+
+    chamando função dentro do jsx
+    const element = (
+        <h1> Hi, {formatUserName(user)} </h1>
+    )
+
+Componentes permitem que a interface do usuario seja divida em partes independentes e reutilizaveis. Conceitualmente, os componentes são funções js, permitem entradas arbitrárias (props) e retornam elementos react que devem ser renderizados
+
+Props:
+
+    Argumentos passados para componentes react. Fluxo unidirecional (de cima pra baixo/ pai para filho) Props são imutaveis, os filhos não devem alterar os dados.
+    Todos os componentes react tem que agir como funções puras em relaçãos aos seus props, não posso alterar a entrada. 
+    Recebem dados dinâmicos do componente pai para tornar ele reutilizavel. São imutáveis, são acessadas por desestruturação ou acessando tipo propriedades de um objeto.
+
+State: memória do componente. como o componente reage a mudanças. atualizar wa variavel e renderizar isso na tela. o hook useSate tem uma variavel pra reter os dados entre as renderizações e uma função para atualizar a variavel e acionar o reat pra renderizar o componente.

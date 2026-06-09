@@ -2,10 +2,10 @@ import type React from "react";
 import styles from "./Input.module.css";
 
 type InputProps = {
-  //type: 'text' | 'number' | 'search'; union type
+  type: 'text' | 'number' | 'search';
   id: string;
   labelText: string;
-} & React.ComponentProps<"input">; //inter
+} & React.ComponentProps<"input">; //intersection type
 
 export function Input({id,type,labelText,...rest}: InputProps) {
 
