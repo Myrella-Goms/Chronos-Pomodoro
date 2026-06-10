@@ -3,6 +3,7 @@ import { CountDown } from "../components/Countdown/CountDown";
 import { Logo } from "../components/Logo/Logo";
 import { Menu } from "../components/Menu/Menu";
 import { Form } from "../components/Form/Form";
+import { Footer } from "../components/Footer/Footer";
 
 export function Home() {
   return (
@@ -18,6 +19,9 @@ export function Home() {
       </Container>
       <Container>
         <Form />
+      </Container>
+      <Container>
+        <Footer/>
       </Container>
     </div>
   );

@@ -1,0 +1,74 @@
+...props se refere a todas as propriedades que um componente pode ter.
+
+Um elemento pode ter filho ou não
+
+Componentes funcionais: elementos dentro da página,  qualquer elemento pode ser um componente. Componentes reutilizáveis que possam ser usados em diversas locais na aplicação. Economia de código.
+
+Props e estado dos componentes: comunicação entre componentes. Passar dados de um componente pra outro e controle do estado interno dos componentes.
+	Componentes tem filhos
+
+Componente react é uma função que retorna jsx.
+
+Quando rodo o projeto, o react procura um arquivo index.html, que nos direciona ao arquivo main.tsx, que vai checar se existe o arquivo com id rood, após isso, ele reenderiza o app.tsx. Ele é single page application pois só tem um arquivo index.html, as demais páginas são renderizadas dentro dos componentes do react, em jsx.
+
+    {/* Strict mode é uma boa prática para identificar problemas em aplicações React */}
+
+Children =  o componente recebe valores ou icons ou coisas, tipo um card com textos diferentes. Filhos são elementos que vão dentro da tag do componente.
+
+	Obs: sempre usar o tipo React.ReactNode nos children, para garantir que não tenhamos erro de tipagem
+
+Também podemos criar props junto com {javascript}
+
+Propriedades do componente: props. Props é um objeto que contém todas as propriedades que são passadas para o componente quando ele é usado.
+
+Ex: 
+
+type HeadingProps = {
+    children: string;
+}
+export function Heading(props: HeadingProps){
+    return(
+        <h1 className={styles.heading}>{props.children}</h1>
+    )
+} 
+
+Ou
+
+
+type HeadingProps = {
+    children: string;
+}
+export function Heading({children}: HeadingProps){
+    return(
+        <h1 className={styles.heading}>{props.children}</h1>
+    )
+}
+
+O & em TypeScript é o operador de interseção de tipos (intersection types). Ele combina múltiplos tipos em um único tipo que possui todas as propriedades dos tipos originais.
+
+Esta abordagem permite que seu componente personalizado:
+	1. Aceite todas as props nativas do <input> (onChange, value, placeholder, etc.)
+	2. Adicione props customizadas específicas do seu componente
+	3. Mantenha type safety completo
+
+	Ex: 
+	type InputProps = {
+	    //type: 'text' | 'number' | 'search'; union type
+	} & React.ComponentProps<'input'>
+
+&& usamos quando queremos colocar uma situação como verdade
+
+labelText && 
+
+
+Herança em CSS é quando elementos filhos automaticamente herdam certas propriedades dos elementos pais.
+
+No seu código:
+Propriedades que são herdadas:
+color, font-family, font-size
+line-height, text-align
+visibility, cursor
+Propriedades que NÃO são herdadas:
+margin, padding, border
+background, width, height
+display, position

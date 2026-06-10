@@ -17,3 +17,9 @@
   transform: scale(1.05);
   transition: transform 0.1s ease, background-color 0.1s ease;
 }
+.green{
+  background-color: var(--primary);
+}
+.red{
+  background-color: var(--error);
+}

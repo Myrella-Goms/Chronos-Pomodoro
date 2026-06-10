@@ -1,9 +1,9 @@
 .container{
-    max-width: 1000px;
+    max-width: 98rem;
     margin: 0 auto;
 }
 
 .content{
-    margin: 32px;
+    margin: 3.2rem;
     text-align: center;
 }
