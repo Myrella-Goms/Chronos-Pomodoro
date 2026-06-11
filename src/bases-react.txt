@@ -26,4 +26,29 @@ Props:
     Todos os componentes react tem que agir como funções puras em relaçãos aos seus props, não posso alterar a entrada. 
     Recebem dados dinâmicos do componente pai para tornar ele reutilizavel. São imutáveis, são acessadas por desestruturação ou acessando tipo propriedades de um objeto.
 
-State: memória do componente. como o componente reage a mudanças. atualizar wa variavel e renderizar isso na tela. o hook useSate tem uma variavel pra reter os dados entre as renderizações e uma função para atualizar a variavel e acionar o reat pra renderizar o componente.
+State: memória do componente. como o componente reage a mudanças. atualizar wa variavel e renderizar isso na tela. o hook useSate tem uma variavel pra reter os dados entre as renderizações e uma função para atualizar a variavel e acionar o reat pra renderizar o componente. Sem efeitos colaterais no setState(), apenas funções puras
+
+  //usando useState pra monitorar o valor da variavel e renderizar a tela com o valor atualizado
+  const [numero, setNumero] = useState(0)
+  //sempre que lido com on, a função recebe o nome de handle. usamos arrow function dentro da função para guardar o estado anterior da variavel (se eu preciso usar o valor anterior da variavel)
+  function handleClick() {
+    setNumero((numero) => numero +1)
+  } 
+
+    //hook usado pra efeitos colaterais, coisas que o react não monitora (tipo chamadas de API, mudar tema, salvar no local storage)
+    useEffect(() => {
+      console.log(Date());
+    }); //uma forma de uso que sempre é executado qd o componente renderiza
+    useEffect(() => {}, []);o use effect executa apenas quando o react monta o componente na tela pela primeira vez  muuto usado em consultas a API, para não ficar fazendo chamadas a cada vez que o componente renderiza
+    useEffect(() => {}, [theme]); //array de dependencia quando passo um outro paramero com array [], 
+
+
+localStorage é um tipo de armazenamento do navegador que salva os dados (strings) no formato chave e valor de maneira permanente. consigo setar, ler, apagar e limpar todos os dados
+
+localstorage é separado por origin (protocolo, host, porta) = esse mesmo conjunto compartilha o mesmo localstorage
+
+Quer persistência real → localStorage ou cookie (podem ser enviados ao servidor)
+
+session é parecido
+Quer isolamento + mais segurança → sessionStorage
+Quer segurança forte → cookie httpOnly + backend session/token

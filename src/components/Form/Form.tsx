@@ -21,7 +21,7 @@ export function Form() {
       </div>
 
       <div className="formRow">
-        <Button color='red' icon={<PlayCircleIcon/>}/>
+        <Button icon={<PlayCircleIcon/>}/>
       </div>
     </form>
   );

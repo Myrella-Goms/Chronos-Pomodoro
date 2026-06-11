@@ -6,7 +6,7 @@
 }
 
 .label {
-  color: #ffffff;
+  color: var(--gray-100);
   display: flex;
   flex-direction: column;
   justify-items: center;
@@ -16,11 +16,11 @@
 
 .input{
   background-color: transparent;
-  border: 1px solid #ffffff;
+  border: 1px solid var(--gray-100);
   outline: none;
   box-shadow: none;
   border-radius: 4px;
-  color:#FFFFFF;
+  color:var(--gray-100);
   font-size: 16px;
   padding: 8px;
 }
