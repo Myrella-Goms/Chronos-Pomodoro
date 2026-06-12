@@ -1,4 +1,4 @@
-import { HomeIcon, Settings, Sun, TimerIcon } from "lucide-react";
+import { HomeIcon, MoonIcon, Settings, SunIcon, TimerIcon } from "lucide-react";
 import styles from "./Menu.module.css";
 import { useEffect, useState } from "react";
 
@@ -8,7 +8,6 @@ export function Menu() {
     const storageTheme = localStorage.getItem('theme') as Themes || "dark";
     return storageTheme;
   });
-
   //o use effect vê que o estado theme mudou, pois é sua dependencia, e executa a mudança, não fica dentro da função. hooks ficam no topo do componente
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
@@ -56,7 +55,7 @@ export function Menu() {
         title="Tema"
         onClick={handleTheme}
       >
-        <Sun />
+        {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
       </a>
     </div>
   );

@@ -52,3 +52,10 @@ Quer persistência real → localStorage ou cookie (podem ser enviados ao servid
 session é parecido
 Quer isolamento + mais segurança → sessionStorage
 Quer segurança forte → cookie httpOnly + backend session/token
+
+let themeIcon
+if (theme === 'dark'){
+    themeIcon = <SunIcon />
+}else{
+    themeIcon = <MoonIcon />
+}
