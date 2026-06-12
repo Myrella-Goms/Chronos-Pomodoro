@@ -1,11 +1,12 @@
 import { Container } from "../components/Container/Container";
-import { CountDown } from "../components/Countdown/CountDown";
 import { Logo } from "../components/Logo/Logo";
 import { Menu } from "../components/Menu/Menu";
-import { Form } from "../components/Form/Form";
 import { Footer } from "../components/Footer/Footer";
 
-export function Home() {
+type TemplateProps ={
+    children: React.ReactNode;
+}
+export function MainTemplate({ children } : TemplateProps) {
   return (
     <div>
       <Container>
@@ -15,10 +16,7 @@ export function Home() {
         <Menu />
       </Container>
       <Container>
-        <CountDown />
-      </Container>
-      <Container>
-        <Form />
+        {children}
       </Container>
       <Container>
         <Footer/>

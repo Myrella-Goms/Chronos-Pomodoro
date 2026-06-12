@@ -1,0 +1,11 @@
+.title{
+    color: var(--error);
+    font-weight: bold;
+    font-size: 3rem;
+    margin-top: 40%;
+}
+
+.subtitle{
+    color: var(--error);
+    margin-bottom: 0.5rem;
+}
