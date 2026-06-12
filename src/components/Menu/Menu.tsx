@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 type Themes = "dark" | "light";
 export function Menu() {
+  //lazy initialization é uma tecnica do useState, onde passo uma função como argumento do useSate que será executada na primeira renderização (montagem do componente)
   const [theme, setTheme] = useState<Themes>(() => {
     const storageTheme = localStorage.getItem('theme') as Themes || "dark";
     return storageTheme;

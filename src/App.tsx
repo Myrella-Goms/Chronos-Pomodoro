@@ -1,20 +1,27 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 import { Home } from "./pages/home/Home";
 
 import "./styles/global.css";
 import "./styles/theme.css";
-import { NotFound } from "./pages/error/NotFound";
+import type { TaskStateModel } from "./models/TaskStateModel";
 
-//primeiro componente renderizado pelo index, pois o index possui uma div root e um script que referencia o arquivo main que busca o id root e renderiza o app
+const initialState : TaskStateModel = {
+      tasks: [],
+      secondsRemaining: 0,
+      formattedSecondsRemaining: '00:00',
+      activeTask: null,
+      currentCycle: 0,
+      config: {
+          workTime: 25,
+          shortBreakTime: 5,
+          longBreakTime: 15,
+      }
+}
+
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="notfound" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
-  );
+  const [state, setState] = useState(initialState);
+
+  return <Home state={state} setState={setState}/>;
 }
 
 export default App;

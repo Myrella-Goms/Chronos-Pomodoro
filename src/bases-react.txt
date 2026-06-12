@@ -29,6 +29,8 @@ Props:
 State: memória do componente. como o componente reage a mudanças. atualizar wa variavel e renderizar isso na tela. o hook useSate tem uma variavel pra reter os dados entre as renderizações e uma função para atualizar a variavel e acionar o reat pra renderizar o componente. Sem efeitos colaterais no setState(), apenas funções puras
 
   //usando useState pra monitorar o valor da variavel e renderizar a tela com o valor atualizado
+
+  //quando precisamos do valor anterior é bom passar uma arrow function dentro do set
   const [numero, setNumero] = useState(0)
   //sempre que lido com on, a função recebe o nome de handle. usamos arrow function dentro da função para guardar o estado anterior da variavel (se eu preciso usar o valor anterior da variavel)
   function handleClick() {
@@ -57,5 +59,12 @@ let themeIcon
 if (theme === 'dark'){
     themeIcon = <SunIcon />
 }else{
-    themeIcon = <MoonIcon />
+    themeIcon = <MoonIcon />wl
 }
+
+lazy initialization = bom para perfomance. React só chama a função uma vez quando o componente é montado e ignora completamente a função nas renderizações seguintes. ex: localstorage, sessionStorage, leitores de valor do dom, criar objetos grandes
+
+- Principio da imutabilidade
+Ao trabalhar com objetos mutáveis no react (objetos e arrays(objeto)), não podemos altera-los diretamente, é uma má prática. Temos que copiar o objeto em seu estado preio e recriar o mesmo.
+
+Quando alteramos o objeto diretamente, a referencia desse objeto permanece a mesma e o react não detecta a alteração e não re-renderiza o componente. 
