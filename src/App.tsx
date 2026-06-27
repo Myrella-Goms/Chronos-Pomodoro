@@ -1,17 +1,14 @@
-
 import { Home } from "./pages/home/Home";
 
 import "./styles/global.css";
 import "./styles/theme.css";
-import { TaskContext } from "./templates/contexts/TaskContext";
+import { TaskContextProvider } from "./templates/contexts/TaskContext";
 
 function App() {
-
   return (
-    //provider provem o valor dentro das chaves para os componentes que estão dentro do contexto
-    <TaskContext.Provider value={{ chave: 'dadsf'}}>
+    <TaskContextProvider>
       <Home />
-    </TaskContext.Provider>
+    </TaskContextProvider>
   );
 }
 

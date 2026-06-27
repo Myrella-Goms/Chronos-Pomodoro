@@ -69,6 +69,11 @@ Ao trabalhar com objetos mutáveis no react (objetos e arrays(objeto)), não pod
 
 Quando alteramos o objeto diretamente, a referencia desse objeto permanece a mesma e o react não detecta a alteração e não re-renderiza o componente. 
 
+Context API
 Contexto é uma forma de passar dados entre a arvores de componentes sem usar props drilling (passar props manualmente entre componentes até chegar em um componente abaixo na arvore)
 - usados: preferencas locais e tipos de UI
 - indicado usar contexto para comaprtilhar dados considerados globais pela arvore de componentes do react, ex: usuario autenticado, idioma preferido
+
+-crio um hook personalziado com o contexto que quero compartilhar por toda a aplicação, nesse hook vou ter o valor inicial e a função para atualizar o valor dela
+
+crio contexto - tipo o contexto com state e setStae - crio hook para usar o contexto - crio componente que usa o provider do contexto e o state e set state como value, o state é o tipo initialContextState constante usada/objeto literal que contem todos os dados da apliação. ela representa o estado a ser renderizado pelos componentes o os dados que vamos passar por cada componente dentro do provider
