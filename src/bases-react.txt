@@ -65,6 +65,10 @@ if (theme === 'dark'){
 lazy initialization = bom para perfomance. React só chama a função uma vez quando o componente é montado e ignora completamente a função nas renderizações seguintes. ex: localstorage, sessionStorage, leitores de valor do dom, criar objetos grandes
 
 - Principio da imutabilidade
-Ao trabalhar com objetos mutáveis no react (objetos e arrays(objeto)), não podemos altera-los diretamente, é uma má prática. Temos que copiar o objeto em seu estado preio e recriar o mesmo.
+Ao trabalhar com objetos mutáveis no react (objetos e arrays(objeto)), não podemos altera-los diretamente, é uma má prática. Temos que copiar o objeto em seu estado previo e recriar o mesmo.
 
 Quando alteramos o objeto diretamente, a referencia desse objeto permanece a mesma e o react não detecta a alteração e não re-renderiza o componente. 
+
+Contexto é uma forma de passar dados entre a arvores de componentes sem usar props drilling (passar props manualmente entre componentes até chegar em um componente abaixo na arvore)
+- usados: preferencas locais e tipos de UI
+- indicado usar contexto para comaprtilhar dados considerados globais pela arvore de componentes do react, ex: usuario autenticado, idioma preferido

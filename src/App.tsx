@@ -1,27 +1,18 @@
-import { useState } from "react";
+
 import { Home } from "./pages/home/Home";
 
 import "./styles/global.css";
 import "./styles/theme.css";
-import type { TaskStateModel } from "./models/TaskStateModel";
-
-const initialState : TaskStateModel = {
-      tasks: [],
-      secondsRemaining: 0,
-      formattedSecondsRemaining: '00:00',
-      activeTask: null,
-      currentCycle: 0,
-      config: {
-          workTime: 25,
-          shortBreakTime: 5,
-          longBreakTime: 15,
-      }
-}
+import { TaskContext } from "./templates/contexts/TaskContext";
 
 function App() {
-  const [state, setState] = useState(initialState);
 
-  return <Home state={state} setState={setState}/>;
+  return (
+    //provider provem o valor dentro das chaves para os componentes que estão dentro do contexto
+    <TaskContext.Provider value={{ chave: 'dadsf'}}>
+      <Home />
+    </TaskContext.Provider>
+  );
 }
 
 export default App;
