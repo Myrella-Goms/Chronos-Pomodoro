@@ -71,9 +71,31 @@ Quando alteramos o objeto diretamente, a referencia desse objeto permanece a mes
 
 Context API
 Contexto é uma forma de passar dados entre a arvores de componentes sem usar props drilling (passar props manualmente entre componentes até chegar em um componente abaixo na arvore)
-- usados: preferencas locais e tipos de UI
+- usados: preferencas locais e tipos de UI (toast compartilhado por toda a aplicação)
 - indicado usar contexto para comaprtilhar dados considerados globais pela arvore de componentes do react, ex: usuario autenticado, idioma preferido
 
--crio um hook personalziado com o contexto que quero compartilhar por toda a aplicação, nesse hook vou ter o valor inicial e a função para atualizar o valor dela
+-criar contexto tipado - crio provider e hook com o mesmo tipo do contexto, convenção de type safety e também por segurança
+
+-crio um hook personalizado com o contexto que quero compartilhar por toda a aplicação(o hook deve retornar exatamente o que o provider passa de valor, por convenção do typescript), nesse hook vou ter o valor inicial e a função para atualizar o valor dela
 
 crio contexto - tipo o contexto com state e setStae - crio hook para usar o contexto - crio componente que usa o provider do contexto e o state e set state como value, o state é o tipo initialContextState constante usada/objeto literal que contem todos os dados da apliação. ela representa o estado a ser renderizado pelos componentes o os dados que vamos passar por cada componente dentro do provider
+
+Controlled Components:
+input controlado é aquele onde o react controla o valor através do state, não o DOM - usamos useState() renderizamos o componente várias vezes
+- propriedades value e onChange controlam o valor atual do input e a atualização para um novo valor - usamos useState pra validar o input em tempo real, no tempo que o usuario digita.
+
+  //controlando o estado do input para capturar o valor e renderizar o componente na tela
+  const [ taskName, setTaskName ] = useState(" ");
+
+  //função para atualizar o input, pegando o valor no target em questão que é o input
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+     setTaskName(event.target.value)
+   }
+    value={taskName}
+    onChange={handleChange}
+
+Forma não controlada = useRef() - acessa elementos do DOM - Usado em formularios grandes quando não precisamos validar o valor em tempo real- caso de uso focus 
+Cria uma referência mutavel que persiste entre renderizações sem causar re-render quando o valor muda
+const numero = userefe(2)
+numero.current += 2; //mudando o valor e não causa re-render
+salva um valor numa variavel e não re-renderiza novamente o componente.
