@@ -25,6 +25,11 @@ export function Form() {
         activeTask: null,
         secondsRemaining: 0,
         formattedSecondsRemaining: "00:00",
+        tasks: prevState.tasks.map((task) => {
+          if (prevState.activeTask && prevState.activeTask.id == task.id)
+            return { ...task, interruptDate: Date.now() };
+          return task;
+        }),
       };
     });
   };
@@ -38,6 +43,7 @@ export function Form() {
       return;
     }
 
+    //sem espaços vazios
     const taskName = taskNameInput.current.value.trim();
 
     //criando nova task:
