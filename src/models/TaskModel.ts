@@ -1,3 +1,5 @@
+import type { TaskStateModel } from "./TaskStateModel";
+
 export interface TaskModel {
     id: string;
     name: string;
@@ -5,5 +7,5 @@ export interface TaskModel {
     startDate: number; 
     completeDate: number | null;
     interruptDate: number | null;
-    type:  'workTime' | 'shortBreakTime' | 'longBreakTime';
+    type:  keyof TaskStateModel['config'];
 }

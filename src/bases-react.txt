@@ -81,8 +81,10 @@ Contexto é uma forma de passar dados entre a arvores de componentes sem usar pr
 crio contexto - tipo o contexto com state e setStae - crio hook para usar o contexto - crio componente que usa o provider do contexto e o state e set state como value, o state é o tipo initialContextState constante usada/objeto literal que contem todos os dados da apliação. ela representa o estado a ser renderizado pelos componentes o os dados que vamos passar por cada componente dentro do provider
 
 Controlled Components:
-input controlado é aquele onde o react controla o valor através do state, não o DOM - usamos useState() renderizamos o componente várias vezes
-- propriedades value e onChange controlam o valor atual do input e a atualização para um novo valor - usamos useState pra validar o input em tempo real, no tempo que o usuario digita.
+Componentes controlados é um conceito que se aplica a componentes cujo os valors são gerenciados pelo estado do react. Os dados dele são validados e atualizados pelo estado. Isso gera muitas re-renderizações
+
+componentes controlados são aqueles onde o react controla o valor através do state, não o DOM - usamos useState() renderizamos o componente várias vezes.
+- propriedades value e onChange controlam o valor atual do input e a atualização para um novo valor - usamos useState pra validar o input em tempo real, no tempo que o usuario digita. o onChange monitora cada atualizaçao, cada letra, e dispara a função pra atualziar o valor do formulario e re-renderizar o componente.
 
   //controlando o estado do input para capturar o valor e renderizar o componente na tela
   const [ taskName, setTaskName ] = useState(" ");
@@ -94,8 +96,21 @@ input controlado é aquele onde o react controla o valor através do state, não
     value={taskName}
     onChange={handleChange}
 
-Forma não controlada = useRef() - acessa elementos do DOM - Usado em formularios grandes quando não precisamos validar o valor em tempo real- caso de uso focus 
+Forms não controlado = useRef() - acessa elementos do DOM - Usado em formularios grandes quando não precisamos validar o valor em tempo real- caso de uso focus 
 Cria uma referência mutavel que persiste entre renderizações sem causar re-render quando o valor muda
 const numero = userefe(2)
 numero.current += 2; //mudando o valor e não causa re-render
 salva um valor numa variavel e não re-renderiza novamente o componente.
+
+React hook form trabalha com inputs não controlados, ele armazena internamente o valor do input, logo o react não precisa atualizar o estado a cada letra digitada e o componente pai não re-renderiza 
+
+- criação de função que recebe um valor numérico, verifica se for oito ou 0, se for, atribuimos 1 a variavel, se não for, somamos +1 a variavel. Passo o valor inicial, vindo de uma API por exemplo, ou de um objeto armazenado no front, para essa função. Armazeno o valor em uma constante e atribuo a contante ao valor de uma propriedade de um objeto 
+
+Ternário
+
+{condição ?
+() : ()}
+
+&&
+{condição verdade &&
+    componente}
