@@ -1,8 +1,19 @@
+React: biblioteca javascript usada para desenvolver interfaces de usuario(UI). 
+    -Componentes é um dos conceitos core(centrais do react)- São a fundação da UI da aplicação. São funções JS declaradas em PascalCase, que podemos usar linguagem de marcação (html) que recebem props, que vão ter um estado e que vão ser renderizados. (em camelCase o navegador entende que é elemento html)
+
+    -Exporte o componente no top level do módulo - crie a função - adicione logica js - adicione linguagem de marcação
+
 React adota que a lógica de renderização é acoplada com outras lógicas de ui: manipulação de eventos, estado mudando e exibição de dados
 
-JSX: extensão de sintaxe js. Posso usar funções dentro do jsx, posso usar jsx dentro de blocos if e loops, atribuir a variaveis, aceitar como argumento e retornar de funções.
+JSX: É uma extensão de sintaxe do javascript que permite inserir html dentro do arquivo javascript. A lógica de renderização e conteúdo (ui) no mesmo lugar, interagindo.
 
-    JSX previne ataques de injeção 
+    Regras: 
+        um componente retorna um único elemento root dentro de <></>(fragmento que permite que você agrupe elementos sem deixar rastros na arvore html do navegador), ou de uma div que engloba tudo.
+
+        atributos dos componentes em camelCase
+        para usar variaveis ou js usamos atributo={} nos atributos ou dentro do componente para renderização condicional
+
+        JSX previne ataques de injeção 
 
     function formatUserName(user){
         return `${user.firstName} ${user.lastName}`
@@ -18,11 +29,29 @@ JSX: extensão de sintaxe js. Posso usar funções dentro do jsx, posso usar jsx
         <h1> Hi, {formatUserName(user)} </h1>
     )
 
-Componentes permitem que a interface do usuario seja divida em partes independentes e reutilizaveis. Conceitualmente, os componentes são funções js, permitem entradas arbitrárias (props) e retornam elementos react que devem ser renderizados
+Componentes permitem que a interface do usuario seja divida em partes independentes e reutilizaveis. Conceitualmente, os componentes são funções js, permitem entradas arbitrárias (props) e retornam elementos react que devem ser renderizados.
 
 Props:
 
-    Argumentos passados para componentes react. Fluxo unidirecional (de cima pra baixo/ pai para filho) Props são imutaveis, os filhos não devem alterar os dados.
+    Argumentos passados para componentes react. Fluxo unidirecional (de cima pra baixo/ pai para filho) Props são imutaveis, os filhos não devem alterar os dados. Podem ser tipos simples, objetos, arrays e funções.
+
+    ex: export function Avatar({person, size}) {
+        <h1>Name:{person.name}</h1>
+        <h1>Size:{size}</h1>
+    }//person é um objeto, mas poderia ser um array, uma função...
+    <Profile person={{
+        imageId: 'szV5sdG',
+        name: 'Maria Skłodowska-Curie',
+        profession: 'physicist and chemist',
+        discovery: 'polonium (chemical element)',
+        awards: [
+          'Nobel Prize in Physics',
+          'Nobel Prize in Chemistry',
+          'Davy Medal',
+          'Matteucci Medal'
+        ],
+      }} passando o objeto inteiro dentro da props
+
     Todos os componentes react tem que agir como funções puras em relaçãos aos seus props, não posso alterar a entrada. 
     Recebem dados dinâmicos do componente pai para tornar ele reutilizavel. São imutáveis, são acessadas por desestruturação ou acessando tipo propriedades de um objeto.
 
