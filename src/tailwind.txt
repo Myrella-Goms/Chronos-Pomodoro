@@ -1,0 +1,20 @@
+Tailwind css:
+
+    - Framework css, mobile first por natureza:
+    - Se eu não definir nenhum breakpoint na classe, aquela estilização vai se aplicar pra mobile, tablet e desktop. Logo, se eu der um flex flex-col-reverse e não definir nenhum breakpoint, todos os tamanhos de tela teram essa configuração
+ 
+    className="flex flex-col w-full px-9 md:px-10"
+        as primeiras classes utilitárias são referentes ao layout mobile, e são sobrescritas por breakpoints a medida que a tela aumenta.
+
+    Toda classe utilitária no tailwind pode ser aplicada condicionamente em breakpoints diferentes, na mesma div 
+        ex: <div className="gap-4 md:gap-8 min-[975px]:pt-0"></div>
+
+        breakpoints: 
+        sm(40rem) - não usar sm para marcar telas mobile, a abordagem ideal é definir o que for mobile primeiro e depois sobrescrever em breakpoints maiores, 
+        md(48rem), 
+        lg(64), 
+        xl(80), 
+        2xl(96)
+        equivale à = `@media (width >= 40rem)`
+
+        shrink: propriedade que define se um elemento pode reduzir em um container flex quando falta espaço

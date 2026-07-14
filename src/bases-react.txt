@@ -1,11 +1,11 @@
 React: biblioteca javascript usada para desenvolver interfaces de usuario(UI). 
-    -Componentes é um dos conceitos core(centrais do react)- São a fundação da UI da aplicação. São funções JS declaradas em PascalCase, que podemos usar linguagem de marcação (html) que recebem props, que vão ter um estado e que vão ser renderizados. (em camelCase o navegador entende que é elemento html)
+    -Componente é um dos conceitos core(centrais do react)- São a fundação da UI da aplicação. São funções JS declaradas em PascalCase, que podemos usar linguagem de marcação (html) que recebem props, que vão ter um estado e que vão ser renderizados. (em camelCase o navegador entende que é elemento html)
 
     -Exporte o componente no top level do módulo - crie a função - adicione logica js - adicione linguagem de marcação
 
 React adota que a lógica de renderização é acoplada com outras lógicas de ui: manipulação de eventos, estado mudando e exibição de dados
 
-JSX: É uma extensão de sintaxe do javascript que permite inserir html dentro do arquivo javascript. A lógica de renderização e conteúdo (ui) no mesmo lugar, interagindo.
+JSX: É uma extensão de sintaxe do javascript que permite escrever html dentro do arquivo javascript. A lógica de renderização e conteúdo (ui) no mesmo lugar, interagindo.
 
     Regras: 
         um componente retorna um único elemento root dentro de <></>(fragmento que permite que você agrupe elementos sem deixar rastros na arvore html do navegador), ou de uma div que engloba tudo.
@@ -32,14 +32,13 @@ JSX: É uma extensão de sintaxe do javascript que permite inserir html dentro d
 Componentes permitem que a interface do usuario seja divida em partes independentes e reutilizaveis. Conceitualmente, os componentes são funções js, permitem entradas arbitrárias (props) e retornam elementos react que devem ser renderizados.
 
 Props:
-
     Argumentos passados para componentes react. Fluxo unidirecional (de cima pra baixo/ pai para filho) Props são imutaveis, os filhos não devem alterar os dados. Podem ser tipos simples, objetos, arrays e funções.
 
     ex: export function Avatar({person, size}) {
         <h1>Name:{person.name}</h1>
         <h1>Size:{size}</h1>
     }//person é um objeto, mas poderia ser um array, uma função...
-    <Profile person={{
+    <Avatar person={{
         imageId: 'szV5sdG',
         name: 'Maria Skłodowska-Curie',
         profession: 'physicist and chemist',
@@ -52,8 +51,62 @@ Props:
         ],
       }} passando o objeto inteiro dentro da props
 
-    Todos os componentes react tem que agir como funções puras em relaçãos aos seus props, não posso alterar a entrada. 
-    Recebem dados dinâmicos do componente pai para tornar ele reutilizavel. São imutáveis, são acessadas por desestruturação ou acessando tipo propriedades de um objeto.
+Renderização condicional: usado para renderizar ou não um componente a depender de uma condição. Podemos usar ternarios, && e if/else. Se uma variavel retornar null a partir de uma verifcação, o componente não érenderizado
+
+    ex: 
+    export function Button({color, disabled} : ButtonProps){
+        <button color={color} disabled={disabled}>
+            Send
+        </button>
+    }
+
+    /status pode ser cancelado ou ativo
+    export function Form({data}:FormProps){
+        const status = data.status;
+        const isDisabledButton? = data.isDisabled;
+        {status &&
+            <Button color={data.color} disable={isDisabledButton?}/>
+        }
+        {!status &&
+            <Button color={data.color} disable={isDisabledButton?/>
+        }
+    }
+
+    A documentação do react aponta que é melhor fazer a renderização condicional no pai, com {&&} ou {? () : ()}, do que passar uma props para o filho indicando se ele vai ser renderizado ou não
+
+    Todos os componentes react tem que agir como funções puras em relaçãos aos seus props, estado e contexto, não posso alterar a entrada. 
+    Componentes Recebem dados dinâmicos do componente pai para tornar ele reutilizavel. Props são imutáveis, são acessadas por desestruturação ou acessando tipo propriedades de um objeto.
+
+Pureza: funções puras são aquelas que nçao alteram nenhum objeto ou variavel que exista antes de ser chamado. Mesmas entradas e mesmas saída. Dada as mesmas entradas, uma função pura deve retornar o mesmo resultado.
+
+Os componentes devem apenas retornar seu jsx e não alterar nenhum objeto ou variavel que exista antes da renderização, isso os tornaria impuros. 
+
+    let guest = 0;
+
+    function Cup() {
+    // Bad: changing a preexisting variable!
+    guest = guest + 1;
+    return <h2>Tea cup for guest #{guest}</h2>;
+    }
+
+    export default function TeaSet() {
+    return (
+        Quando chamo a função duas vezes ele muda o retorno.
+        <>
+        <Cup /> = 1
+        <Cup /> = 2
+        <Cup />= 3
+        </>
+    );
+    }
+
+No entanto podemos alterar variaveis e objetos que acabamos de criar durante a renderização - mutação local dentro do componente. Ou também usamos efeitos colaterais.
+
+Efeitos colaterais geralmente estão dentro de event handlers, e eles não executam durante a renderização mesmo estando dentro do componente, então eles não precisam ser puros. Ou então usamos useEffect() se não tiver nenhum manipulador de eventos capazes de fazer o side effect.
+
+Não alterar variaveis fora do escopo do código, passe props de pais para filhos e as retorne.
+
+- A interface do usuario como arvore: 
 
 State: memória do componente. como o componente reage a mudanças. atualizar wa variavel e renderizar isso na tela. o hook useSate tem uma variavel pra reter os dados entre as renderizações e uma função para atualizar a variavel e acionar o reat pra renderizar o componente. Sem efeitos colaterais no setState(), apenas funções puras
 
@@ -143,3 +196,7 @@ Ternário
 &&
 {condição verdade &&
     componente}
+
+Reducer - useReducer - hook usado para disparar uma ação e alterar o estado, entregando um novo estado
+useReducer((estado e ação)=>{}, 0/estado inicial) ele recebe uma arrow function e sempre retorna um novo estado baseado na ação
+    - tipos de reducer: mais simples é disparar uma string e usar um switch case para fazer uma condicional

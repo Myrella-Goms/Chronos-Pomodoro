@@ -9,7 +9,7 @@ export function Menu() {
     const storageTheme = localStorage.getItem('theme') as Themes || "dark";
     return storageTheme;
   });
-  //o use effect vê que o estado theme mudou, pois é sua dependencia, e executa a mudança, não fica dentro da função. hooks ficam no topo do componente
+  //o use effect vê que o estado theme mudou, pois é sua dependencia, e executa a mudança, não fica dentro da função. hooks ficam no topo do componente e executa um efeito colateral
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
