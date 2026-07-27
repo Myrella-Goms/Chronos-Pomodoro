@@ -1,0 +1,104 @@
+alguns elementos na tela atualizam com base nos inputs do usuário
+
+Respondendo à eventos: 
+    event handlers são funções disparadas em resposta a interações do usuário, como click, confirmar, hover, foco, scroll e inputs.
+
+    Crio uma função responsável pelo evento (handlerSomething) - implemento a lógica dentro da função - passo a props específica (onClick, onSubmit) no componente e passo a função dentro dos brackets, não chamo, só passo.
+
+    Também podemos usar arrow functions dentro das props com funções anônimas que irão executar algo, conveniente para funções curtas
+        <button onClick={() => {
+            alert('You clicked me!');
+        }}>
+
+    Consigo passar o próprio handler como props
+
+    export function Button({ onClick, children }) {
+        return (
+            <button onClick={onClick}>
+            {children}
+            </button>
+        );
+    }
+
+    function PlayButton({ movieName }) {
+        function handlePlayClick() {
+            alert(`Playing ${movieName}!`);
+        }
+
+        return (
+            <Button onClick={handlePlayClick}>
+            Play "{movieName}"
+            </Button>
+        );
+        }
+
+propagação de eventos é quando um evento: onClick, onSubmit sobe na hierarquia do DOM e se propaga de filho para pai. ex: se eu clicar em um botão e ele tiver um eventHandler que existe no pai, esse evento vai propagar por toda arvore.
+
+    um jeito de parar a propagação é capturando o evento e 
+        e.stopPropagation()
+
+event handlers não precisam ser puras, então são ótimoas funções para efeitos colaterais
+
+- state: a memória do componente
+    componentes geralmente precisam mudar o que está na tela como resultado de uma interação do usuário, pra isso, ele precisa saber seu valor atual, para que quando haja uma atualização do mesmo, o componente seja atualizado com um novo valor e seja re-renderizado
+
+    - variaveis locais não persistem entre renderizações, o valor das mesmas não é guardado nem atualizado.
+    - variaveis locais não disparam renderizações 
+
+    o hook useState provém: variavel de estado pra reter os dados entre as renderizações, uma função que atualiza os dados e dispara ao react um avisopara renderizar o componente novamente
+
+    -estado é privado e isolado, logo, se eu chamar o mesmo componente duas vezes na tela e alterar o estado do primeiro, o segundo permancerá com estado original
+
+-render and commit:
+
+antes do componente ser exibido na tela ele é renderizado pelo react.
+há dois motivos para um componente renderizar: renderização inicial e alteração no estado do componente 
+
+O react seria um garçom que irá servir o componente ao cliente após receber um pedido do cliente. Request do cliente e retorno da UI é composto por 3 steps:
+    - Triggering a render - disparando o pedido para renderizar (envio do pedido do cliente a cozinha)
+    - Renderização do componente (processamento do pedido)
+    - Disponibilizando no DOM
+
+Passo 1- Quando a nossa aplicação inicia, a renderização inicial é realizada, quando chamamos createRoot() passando o target DOM node desejado e chamando o .render() desse nó passando o componente em questão, que costuma ser o <App />
+
+-re-renderização ao atualizar o estado do componente. O processo de re-renderização após a renderização inicial é recursivo, logo se um componente retornar outro componente, que retorna outro componente, todos esses serão renderizados (desde que houveram mudançar no estado) até que não haja mais nenhum componente aninhado
+
+    renderização deve sempre ser um calculo puro: retorna o mesmo jsx - same inputs, same outputs; não alterar variaveis e objetos que existiam nates da renderização: mind your own business
+
+    strict mode para encontrar erros nos componentes
+
+-o react aplica as alterações no DOM após a renderização dos componentes, na renderização inicial ele usa a API appendChild para exibir todos os DOM nodes que foram criados. Na re-renderização o react aplica operações mínimas necessárias, ajustando o DOM pra ficar de acordo com a última renderização
+
+* State as a Snapshot - 
+1. Settar o estado aciona renderizações:
+Para que a interface reaja a um evento, é necessário atualizar o estado do componente, não basta apenas a interação do usuário. ex: submissão de formulário: user clica no botão - o event handler onSubmit dispara - ocorre a atualização do estado - aquele trecho da árvore da UI é re-renderizada.
+
+2. Renderização cria uma "fotografia" de um determinado momento no tempo
+Renderizar significar que o react está chamando meu componente, que é uma função jsx. O jsx retornado pela função funciona como uma impressão da UI do usuário naquele determinado momento. O jsx contém props, event handles, variaveis locais e são calculados com base no estado do componente naquele momento.
+
+    - Re-renderização do componente.
+    React chama a função novamente
+    A função retorna um novo snapshot do jsx
+    O react atualiza a árvore do DOM para que fique de acordo com o retorno da função
+
+O estado não desaparece como uma variavel regular após a função ser executada, ele permancece vivo no próprio react. Quano o react chama o componente ele fornece uma cópia do estado dele naquele momento.
+
+export default function Counter() {
+  const [number, setNumber] = useState(0);
+
+  return (
+    <>
+      <h1>{number}</h1>
+      <button onClick={() => {
+        setNumber(number + 5);
+        setTimeout(() => {
+          alert(number);
+        }, 3000);
+      }}>+5</button>
+    </>
+  )
+}
+No exemplo acima, o estado armazenado no react pode mudar internamente, mas no momento que o alerta é chamado ele ainda é 0, por causa do snapshot/cópia daquele momento do estado. O estado permanece fixo até a próxima renderização
+
+- Enfileirando as atualizações de estado:
+o react aguarda todo o código contido nos event handles ser executado antes de processar as atualizações no estado da aplicação. É por isso que a nova renderização 

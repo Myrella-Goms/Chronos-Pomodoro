@@ -18,3 +18,53 @@ Tailwind css:
         equivale à = `@media (width >= 40rem)`
 
         shrink: propriedade que define se um elemento pode reduzir em um container flex quando falta espaço
+
+    
+    cn é quase um padrão em projetos react com tailwind que permite usarmos classes utilitárias diferentes a depender de onde chamamos o componente
+
+        div className={cn(
+            flex flex-col-reverse,
+            className 
+            isActive ? 'gap-4' : 'gap-10' 
+        )}
+
+tailwind v4
+
+quando importamos o tailwind, ele define essas camadas:
+
+@layer theme, base, components, utilities;
+
+@import "./theme.css" layer(theme);
+@import "./preflight.css" layer(base);
+@import "./utilities.css" layer(utilities);
+
+a camada de theme serve para definir os tokens que serão usados no nosso projeto, nas classes utilitárias (a depender do nome do token, ele pode ser usado por baixo dos panos pelo tailwind, no preflight)
+
+a camada base aplica regras globais no projeto, essa camada usa o preflight que já possui regras definidas para padronizar comprotamos entre navegadores diferentes. 
+
+    *preflight é um conjunto de estilos base projetados para suavizar inconsitências entre diferentes navegadores, como se fosse um reset.css/normalize.css.
+
+a camada de componente cria classes para serem usadas em componentes reutilizaveis
+
+a camada de utilities cria classes utilitiarias tailwind, usando css
+-------------------------------------------------------------------------
+css text shadow cria sombras para o texto, podemos criar sombrar no eixo x e y, positivo e negativo
+
+h1{
+    text-shadow: horizontal - vertical - profundidade
+    text-shadow: -2px 0 0
+}
+
+size: classe utilitaria que calcula altura e largura
+
+CONTAINER FLEX(align-items: PAI, align-self: filho | CROSS AXIS, 
+
+    justify-content: main axis)
+
+    items- (refere-se ao align-items do cross axis, por padrão é stretch, mas posso padrozinar o container flex para center, start e etc..)
+
+    o self-(refere-se ao align-self, que alinha o próprio filho)
+
+inset: 0 - fica zerado em top, left, right, bottom, ocupa o espaço do retângulo do pai
+
+pointer-events: none: torna a camada transparente a interações do mouse (cliques, hover) — útil para overlays visuais que não devem bloquear botões/links por baixo.

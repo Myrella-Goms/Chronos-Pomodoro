@@ -107,6 +107,13 @@ Efeitos colaterais geralmente estão dentro de event handlers, e eles não execu
 Não alterar variaveis fora do escopo do código, passe props de pais para filhos e as retorne.
 
 - A interface do usuario como arvore: 
+assim como navegadores e plataformas mobile, o react também usa estruturas em árvore para gerenciar e modelar a relação entre os componentes da aplicação
+
+- árvore de renderização: a renderização de componentes pais e seus componentes filhos. O componente root, App, é o primeiro componente que o react renderiza. Componentes mais próximos do raiz (root) são componentes top level e de maior complexidade, afetando o desempenho de renderização de todos os componentes filhos. Representam a relação entre os componentes em um único render.
+
+-Para o APP ir para produção, há a etapa de compilação que agrupa todo o JS necessário para ser enviado ao cliente, por algum bundler, onde módulos representam a aplicação no browser com suas dependencias. Module bundler (webpack, cria módulos que rpresentam a aplicação).
+
+bundlers analisam as dependencias da aplicação durante o build, criam um grafo de módulos e geram um ou mais bundles otimizados para serem carregador pelo navegador 
 
 State: memória do componente. como o componente reage a mudanças. atualizar wa variavel e renderizar isso na tela. o hook useSate tem uma variavel pra reter os dados entre as renderizações e uma função para atualizar a variavel e acionar o reat pra renderizar o componente. Sem efeitos colaterais no setState(), apenas funções puras
 
