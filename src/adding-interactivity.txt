@@ -101,4 +101,18 @@ export default function Counter() {
 No exemplo acima, o estado armazenado no react pode mudar internamente, mas no momento que o alerta é chamado ele ainda é 0, por causa do snapshot/cópia daquele momento do estado. O estado permanece fixo até a próxima renderização
 
 - Enfileirando as atualizações de estado:
-o react aguarda todo o código contido nos event handles ser executado antes de processar as atualizações no estado da aplicação. É por isso que a nova renderização 
+o react aguarda todo o código contido nos event handles ser executado antes de processar as atualizações no estado da aplicação. É por isso que a nova renderização só ocorre após todas as chamadas
+
+export default function Counter() {
+  const [number, setNumber] = useState(0);
+
+  return (
+    <>
+      <h1>{number}</h1>
+      <button onClick={() => {
+        setNumber(number + 1);
+        setNumber(number + 1);
+        setNumber(number + 1);
+      }}>+3</button>
+    </>
+  )
